@@ -6,7 +6,21 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 Enviromental Varibles .env:
 
-```bash
+# Environment Variables
+
+To run this project, you will need to add the following environment variables to your `.env` file:
+
+| Variable Name          | Description                                    |
+| ---------------------- | ---------------------------------------------- |
+| `MONGODB_URI`          | Your MongoDB connection string                 |
+| `NEXTAUTH_URL`         | The URL where your NextAuth instance is hosted |
+| `NEXTAUTH_SECRET`      | The secret key for NextAuth                    |
+| `NEXT_PUBLIC_BASE_URL` | The base URL of your application               |
+| `NEXT_PUBLIC_API_URL`  | The API URL for your application               |
+
+**Example:**
+
+```env
 MONGODB_URI=mongodb+srv://your_username:your_password@yourcluster.mongodb.net/?retryWrites=true&w=majority
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your_nextauth_secret_here
