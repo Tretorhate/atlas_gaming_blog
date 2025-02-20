@@ -4,12 +4,15 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Check for environmental varibles create a .env file
 
-Enviromental Varibles:
+Enviromental Varibles .env:
+
+```bash
 MONGODB_URI=mongodb+srv://your_username:your_password@yourcluster.mongodb.net/?retryWrites=true&w=majority
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your_nextauth_secret_here
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
 NEXT_PUBLIC_API_URL=http://localhost:3000
+```
 
 ## Install all dependencies
 
