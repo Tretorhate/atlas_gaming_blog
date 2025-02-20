@@ -3,13 +3,23 @@
 import { Header } from "@/components/Header";
 import Link from "next/link";
 
+// async function getArchives() {
+//   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/archives`, {
+//     cache: "no-store",
+//   });
+//   if (!res.ok) {
+//     const errorData = await res.json();
+//     throw new Error(errorData.error || "Failed to fetch archives");
+//   }
+//   return res.json();
+// }
+
 async function getArchives() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/archives`, {
     cache: "no-store",
   });
   if (!res.ok) {
-    const errorData = await res.json();
-    throw new Error(errorData.error || "Failed to fetch archives");
+    throw new Error("Failed to fetch books");
   }
   return res.json();
 }

@@ -35,7 +35,7 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
-## Check for environmental varibales
+## Check for environmental varibles .env
 
 Enviromental Varibles:
 MONGODB_URI=mongodb+srv://your_username:your_password@yourcluster.mongodb.net/?retryWrites=true&w=majority
