@@ -3,7 +3,6 @@ import { Header } from "@/components/Header";
 import clientPromise from "@/lib/mongodb";
 
 async function getPodcasts() {
-  // In development or client-side, you could fetch from the API
   if (process.env.NODE_ENV !== "production" && typeof window !== "undefined") {
     const response = await fetch("/api/podcasts", {
       next: { revalidate: 0 },
@@ -18,15 +17,17 @@ async function getPodcasts() {
     return response.json();
   }
 
-  // During build or server-side, fetch directly from MongoDB
   const client = await clientPromise;
   const db = client.db("atlas_gaming_blog");
   const podcasts = await db.collection("podcasts").find({}).toArray();
 
   return podcasts.map((podcast) => ({
     ...podcast,
-    _id: podcast._id.toString(), // Serialize ObjectId to string
-    date: podcast.date.toISOString(), // Ensure date is serializable
+    _id: podcast._id.toString(),
+    date:
+      podcast.date instanceof Date
+        ? podcast.date.toISOString()
+        : new Date(podcast.date).toISOString(),
   }));
 }
 
