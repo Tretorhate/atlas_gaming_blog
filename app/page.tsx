@@ -15,12 +15,13 @@ import {
   Book,
   Archive,
 } from "lucide-react";
+import { WavyBackgroundDemo } from "@/components/WavyBackgroundDemo";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="container mx-auto mt-8 px-4">
+      <main className="container mx-auto mt-8 px-4 ">
         <section className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">
             Welcome to Atlas Gaming Blog
@@ -30,7 +31,7 @@ export default function Home() {
             discussions.
           </p>
         </section>
-        <section className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <section className="relative z-20 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -108,6 +109,9 @@ export default function Home() {
           </Card>
         </section>
       </main>
+      <section className="relative z-10 mt-[-100px]">
+        <WavyBackgroundDemo />
+      </section>
     </div>
   );
 }
