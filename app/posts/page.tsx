@@ -52,50 +52,57 @@ export default async function Posts() {
         </div>
         <div className="grid gap-4">
           {posts.map((post: Post) => (
-            <Card key={post._id}>
-              <CardHeader>
-                <CardTitle>
-                  <Link
-                    href={`/posts/${post._id}`}
-                    className="text-xl font-semibold hover:underline"
-                  >
-                    {post.title}
-                  </Link>
+            <Card
+              key={post._id}
+              className="bg-white border-gray-300 shadow-md hover:shadow-lg transition-shadow duration-200"
+            >
+              <CardHeader className="border-b border-gray-200 pb-3">
+                <CardTitle className="text-lg font-semibold text-gray-900 line-clamp-2">
+                  {post.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">
+
+              <CardContent className="pt-4 pb-6 space-y-4">
+                <p className="text-sm text-gray-600">
                   Posted on: {new Date(post.createdAt).toLocaleDateString()}
                 </p>
-                <p className="mt-2">{post.content.substring(0, 150)}...</p>
-                <div className="mt-2">
+                <p className="text-gray-700 line-clamp-3">
+                  {post.content.substring(0, 150)}...
+                </p>
+                <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag: string) => (
                     <span
                       key={tag}
-                      className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+                      className="inline-block bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs"
                     >
                       #{tag}
                     </span>
                   ))}
                 </div>
-                {session?.user &&
-                  (session.user.id === post.author ||
-                    session.user.role === "admin") && (
-                    <div className="mt-4 space-x-2">
-                      <Link href={`/posts/edit/${post._id}`}>
-                        <Button variant="outline">Edit</Button>
-                      </Link>
-                      <form
-                        action={handleDelete.bind(null, post._id)}
-                        className="inline"
-                      >
-                        <Button type="submit" variant="destructive">
-                          Delete
-                        </Button>
-                      </form>
-                    </div>
-                  )}
               </CardContent>
+
+              {session?.user &&
+                (session.user.id === post.author ||
+                  session.user.role === "admin") && (
+                  <div className="px-6 pb-4 flex gap-3 justify-end border-t border-gray-200 pt-4">
+                    <Button
+                      asChild
+                      variant="outline"
+                      size="sm"
+                      className="border-gray-400 text-gray-700 hover:bg-gray-100"
+                    >
+                      <Link href={`/posts/edit/${post._id}`}>Edit</Link>
+                    </Button>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      className="bg-red-600 hover:bg-red-700"
+                      formAction={() => handleDelete(post._id)}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                )}
             </Card>
           ))}
         </div>

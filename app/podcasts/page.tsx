@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Header } from "@/components/Header";
 import clientPromise from "@/lib/mongodb";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 async function getPodcasts() {
   if (process.env.NODE_ENV !== "production" && typeof window !== "undefined") {
@@ -42,13 +43,25 @@ export default async function Podcasts() {
           <h1 className="text-3xl font-bold mb-4">Podcasts</h1>
           <div className="grid gap-4">
             {podcasts.map((podcast: any) => (
-              <div key={podcast._id} className="border p-4 rounded">
-                <h2 className="text-xl font-bold">{podcast.title}</h2>
-                <p>{podcast.description}</p>
-                <p className="text-sm text-gray-500">
-                  {new Date(podcast.date).toLocaleDateString()}
-                </p>
-              </div>
+              <Card
+                key={podcast._id}
+                className="bg-white border-gray-300 shadow-md hover:shadow-lg transition-shadow duration-200"
+              >
+                <CardHeader className="border-b border-gray-200 pb-3">
+                  <CardTitle className="text-lg font-semibold text-gray-900 line-clamp-2">
+                    {podcast.title}
+                  </CardTitle>
+                </CardHeader>
+
+                <CardContent className="pt-4 pb-6 space-y-4">
+                  <p className="text-gray-700 line-clamp-3">
+                    {podcast.description}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    {new Date(podcast.date).toLocaleDateString()}
+                  </p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </main>
@@ -69,4 +82,4 @@ export default async function Podcasts() {
 }
 
 // Optional: Configure revalidation
-export const revalidate = 0; // Matches your { next: { revalidate: 0 } }
+export const revalidate = 0;
