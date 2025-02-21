@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Header } from "@/components/Header";
-import Link from "next/link";
 
 // async function getArchives() {
 //   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/archives`, {
@@ -35,9 +34,7 @@ export default async function Archives() {
         <div className="grid gap-4">
           {archives.map((archive: any) => (
             <div key={archive._id} className="border p-4 rounded">
-              <h2 className="text-xl font-semibold mb-2">
-                <Link href={archive.url}>{archive.title}</Link>
-              </h2>
+              <h2 className="text-xl font-semibold mb-2">{archive.title}</h2>
               <p className="text-gray-600">
                 {archive.day} {archive.month} {archive.year}
               </p>

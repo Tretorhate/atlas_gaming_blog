@@ -42,7 +42,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { year, month, day, title, url } = await req.json();
+    const { year, month, day, title } = await req.json();
 
     const client = await clientPromise;
     const db = client.db("atlas_gaming_blog");
@@ -52,7 +52,6 @@ export async function POST(req: Request) {
       month,
       day,
       title,
-      url,
       createdAt: new Date(),
       updatedAt: new Date(),
     });
